@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        display: inline-block;
+        text-align: center;
+        margin: 0% 0% 0% 30%;
+      }
+      label {
+        display: inline-block;
+        width: 180px;
+      }
+      input {
+        display: inline-block;
+        width: 180px;
+      }
+      fieldset {
+        border-radius: 25px;
+      }
+      #sub_button {
+        height: 30px;
+        width: 150px;
+        background-color: rgb(61, 60, 60);
+        color: whitesmoke;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: large;
+      }
+      #res_button {
+        height: 30px;
+        width: 150px;
+        background-color: rgb(61, 60, 60);
+        color: whitesmoke;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: large;
+      }
+      #sel_contry {
+        display: inline-block;
+        width: 180px;
+      }
+      p {
+        font-size: larger;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>You have Already Registered please <a href="./Login.html">Login</a></p>
+      <fieldset>
+        <legend><h1>Resistration Form</h1></legend>
+        <form action="">
+          <div>
+            <label for="">User First name :</label>
+            <input
+              type="text"
+              id="firstname"
+              pattern="[A-Za-z]{3,15}"
+              required
+            />
+          </div>
+          <br /><br />
+          <div>
+            <label for="">User Last name :</label>
+            <input
+              type="text"
+              id="Lastname"
+              pattern="[A-Za-z]{3,15}"
+              required
+            />
+          </div>
+          <br /><br />
+          <div>
+            <label for="">Email :</label>
+            <input type="email" id="email" required />
+          </div>
+          <br /><br />
+          <div>
+            <label for="">Password :</label>
+            <input type="password" id="password" required />
+          </div>
+          <br /><br />
+          <div>
+            <label for="">Confirm Password :</label>
+            <input type="password" id="confpassword" required />
+          </div>
+          <br /><br />
+          <div>
+            <label for="">Contact Number :</label>
+            <input
+              type="tel"
+              id="contactnumb"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              required
+            />
+          </div>
+          <br /><br />
+          <div>
+            <label for="">Country :</label>
+            <select name="option" id="sel_contry" aria-valuetext="5">
+              <option>select Country</option>
+              <option>IND</option>
+              <option>RUS</option>
+              <option>SA</option>
+              <option>UK</option>
+              <option>USA</option>
+            </select>
+          </div>
+          <br /><br />
+          <a href="./Login.html">
+            <input  type="submit"  id="sub_button"  onclick="Registration_Button()" /></a>
+          <input type="reset" id="res_button" />
+        </form>
+      </fieldset>
+    </div>
+
+    <script>
+      function Registration_Button() {
+        var firstname = document.getElementById("firstname").value;
+        var lastname = document.getElementById("Lastname").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var confirm_pass = document.getElementById("confpassword").value;
+        var contactn = document.getElementById("contactnumb").value;
+        var country = document.getElementById("sel_contry").value;
+
+        var jsonReg = {
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          password: password,
+          confpass: confirm_pass,
+          contact: contactn,
+          country: country,
+        };
+
+        if (firstname == "") {
+          alert("please enter the 1st name");
+        } else if (lastname == "") {
+          alert("please enter the 2st name");
+        } else if (email == "") {
+          alert("please enter the email");
+        } else if (password == "") {
+          alert("fill the password");
+        } else if (confirm_pass == "") {
+          alert("fill the confirm password");
+        } else if (contactn == "") {
+          alert("fill the contact no");
+        }
+        //Access array to set new data
+
+        var localvalues = JSON.parse(localStorage.getItem("registred_data"));
+
+        //If exist new data its going the if block
+        if (localvalues) {
+          localvalues.push(jsonReg);
+        }
+ 
+        // otherwise it stores previous data
+        else {
+          localvalues = [];
+          localvalues.push(jsonReg);
+        }
+        localStorage.setItem("registred_data", JSON.stringify(localvalues));
+      }
+    </script>
+  </body>
+</html>

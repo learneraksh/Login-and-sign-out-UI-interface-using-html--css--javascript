@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+    <style>
+      body{ 
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: inline-block;
+            text-align: center;
+            margin:0% 0% 0% 35%;
+        }
+        #sub_button{  
+            height: 30px;
+            width: 150px;
+            background-color: rgb(61, 60, 60);
+            color: whitesmoke;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: large;
+        }
+        #res_button{
+            height: 30px;
+            width: 150px;
+            background-color:rgb(61, 60, 60);
+            color: whitesmoke;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: large;
+        }
+        fieldset{
+            border-radius: 25px;
+        }
+        
+         #reg_link{
+             text-decoration: none;
+             color: rgb(247, 0, 0);
+         }
+         
+         #sub{
+            color: whitesmoke;
+             text-decoration: none;
+             cursor:pointer;
+         }
+    </style>
+</head>
+<body>
+    <div>
+         <h3>You have Not Register Please <a href="./Registration_form.html" id="reg_link"> Register Here.!! </a> </h3>
+        <fieldset>
+            <legend><h1>Login Form</h1></legend>
+            <form action="#" method="get" >
+            <div><label for="">Email :</label>
+             <input type="email" id="email">
+            </div>
+            <br><br>
+            <div><label for="">Password :</label>
+                <input type="password" id="password">
+            </div>
+            <br><br>
+            <button type="submit" id="sub_button" onclick="redirect_to_Wel()"> 
+                <a href="./Welcome.html" id="sub"> Login </a> </button>
+                   
+           <input type="reset" id="res_button" name="reset" >
+         
+            </form>
+        </fieldset>
+    </div>
+    <script>
+     function redirect_to_Wel(){
+    var email = document.getElementById("email").value;
+    var psw = document.getElementById("password").value;
+    
+    // var login_data = new Array ();
+    var reg_data = JSON.parse(localStorage.getItem("registred_data"));
+    var flag=0;
+     
+    reg_data.map((value,index)=>
+    {
+        if(value.email==email && value.password==psw)
+         {
+           
+               flag =1;
+         }
+  
+    }
+    );
+   
+ if (flag==1) 
+    {
+      
+        alert("Login Succesfully");
+
+        window.location.href = "Welcome.html";
+       
+     } 
+    else {
+        alert('Invalid Login credintials');
+    }
+      var login = {"email":email, 
+                 
+                 "password":psw
+                 };
+               
+               localStorage.setItem("login_details", JSON.stringify(login));
+}
+    </script>
+</body>
+</html>
+
+
+
+

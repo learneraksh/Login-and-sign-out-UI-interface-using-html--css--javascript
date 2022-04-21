@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1>Welcome Users</h1>
+    <form action="" method="get">
+        <h3>profile Detail</h3>
+        <label for="">Username</label>
+        <input type="text" name="firstname" id="username1">
+        <br><br>
+        <label for="">lastname</label>
+        <input type="text" name="firstusername" id="username2">
+        <br><br>
+        <div><label for="">Contact Number :</label>
+          <input type="tel" id="c_numb" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+      </div>
+      <br><br>
+      <div><label for="">Country :</label>
+        <input type="text" id="count" >
+      </div>
+       
+        <br><br>
+        <input type="submit" value="Update"  onclick="edit_info(indexvalue)" >
+   
+        <a href="./Login.html"> <input type="button" value ="Signout" ></a>  
+       
+    </form>
+    
+  <script> 
+    
+    var localvalues = JSON.parse(localStorage.getItem("registred_data"));
+    var login_data = JSON.parse(localStorage.getItem("login_details"));
+    var indexvalue;
+
+   localvalues.map((item,index)=>{
+      if(login_data.email==item.email && login_data.password==item.password)
+      {
+         indexvalue=index;
+      }
+      });
+
+         document.getElementById("username1").value=localvalues[indexvalue].firstname;
+         document.getElementById("username2").value=localvalues[indexvalue].lastname;
+         document.getElementById("c_numb").value=localvalues[indexvalue].contact;
+         document.getElementById("count").value=localvalues[indexvalue].country;
+
+
+  function edit_info(indexvalue)
+  {
+       //to travel anywhere in localvalue object which is stored in localStorage
+       
+       var localvalues = JSON.parse(localStorage.getItem("registred_data"));
+       localvalues[indexvalue].firstname= document.getElementById("username1").value;
+       localvalues[indexvalue].lastname= document.getElementById("username2").value;
+        localvalues[indexvalue].contact= document.getElementById("c_numb").value;
+        localvalues[indexvalue].country= document.getElementById("count").value;
+
+        localStorage.setItem("registred_data",JSON.stringify(localvalues));
+
+  }
+    </script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- // var current_data=login_data.filter((q)=>{return q.email==email && q.password==password});
+        //  localStorage.setItem('firstname',current_data.firstname);
+        // function info_upd(item)
+        // {
+          
+        // };
+        //    localStorage.setItem('lastname',current_user.firstname);
+        //    localStorage.setItem("firstname",current_user.lastname);
+             -->
+
+
+
+
+             <!-- var localvalues = JSON.parse(localStorage.getItem("registred_data"));
+      
+             var login_data = JSON.parse(localStorage.getItem("registred_data"));
+    
+            function edit_info()
+            {
+              var firstname = document.getElementById("username1").value;
+              var lastname = document.getElementById("username2").value;
+        
+              var login_data = new Array ();
+              login_data = JSON.parse(localStorage.getItem("registred_data"));
+             
+            }
+            
+     function info_upd()
+             {
+            var localvalues = JSON.parse(localStorage.getItem("registred_data"));
+            var login_data = new Array ();
+            login_data = JSON.parse(localStorage.getItem("registred_data"));
+    
+            var firstname = document.getElementById("username1").value;
+            var lastname = document.getElementById("username2").value;
+    
+              var current_data = login_data.map(function(item,index) 
+              {
+    
+              login_data.filter((q)=>{return q.email==email && q.password==password});
+                   firstname.push(login_data);
+              var user1= JSON.localStorage.setItem('firstname',JSON.stringify(login_data.firstname));
+           
+              lastname.push(login_data);
+             var userlastname= localStorage.setItem("lastname",JSON.stringify(login_data.lastname));
+            
+               return item.user1 + item.userlastname;
+            });
+            } -->
